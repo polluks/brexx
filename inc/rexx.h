@@ -94,7 +94,12 @@
 #define MAXARGS		15
 #define PROC_INC	10
 #define CLAUSE_INC	100
+#ifdef JCC
+#define CODE_INC	4096
+#define CAT_INC		4095
+#else
 #define CODE_INC	256
+#endif
 #define STCK_SIZE	255
 
 /* call types */
@@ -252,7 +257,9 @@ RxFile*	__CDECL RxFileAlloc( char *fname );
 void	__CDECL RxFileFree( RxFile *rxf );
 void	__CDECL RxFileType( RxFile *rxf );
 int	__CDECL RxFileLoad( RxFile *rxf );
-int	__CDECL RxLoadLibrary( PLstr libname, bool shared );
+#ifndef __APPLE__
+  int	__CDECL RxLoadLibrary( PLstr libname, bool shared );
+#endif
 int	__CDECL RxRun( char *filename, PLstr programstr,
 		PLstr arguments, PLstr tracestr, char *environment );
 

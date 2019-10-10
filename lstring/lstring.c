@@ -50,6 +50,10 @@
 
 #define __LSTRING_C__
 
+#ifdef JCC
+#include "rexx.h"
+#endif
+
 #include <math.h>
 #include "lerror.h"
 #include "lstring.h"
@@ -245,6 +249,10 @@ Lcmp( const PLstr a, const char *b )
 void __CDECL
 Lstrcpy( const PLstr to, const PLstr from )
 {
+	if ( LISNULL(*to) ) {
+		Lfx(to,31);
+	}
+    
 	if (LLEN(*from)==0) {
 		LLEN(*to) = 0;
 		LTYPE(*to) = LSTRING_TY;
@@ -284,8 +292,12 @@ Lstrcat( const PLstr to, const PLstr from )
 	L2STR(from);
 
 	l = LLEN(*to)+LLEN(*from);
-	if (LMAXLEN(*to) <= l)
+	if (LMAXLEN(*to) < l)
+#ifdef JCC
+		Lfx(to, MAX(l,LMAXLEN(*to) + CAT_INC));
+#else
 		Lfx(to, l);
+#endif
 	MEMCPY( LSTR(*to) + LLEN(*to), LSTR(*from), LLEN(*from) );
 	LLEN(*to) = l;
 } /* Lstrcat */
@@ -402,6 +414,9 @@ _Lisnum( const PLstr s )
 
 	ch = LSTR(*s);
 	if (ch==NULL) return LSTRING_TY;
+#if defined(__CMS__) || defined(__MVS__)                
+  	if (s->len>LMAXNUMERICSTRING) return LSTRING_TY;
+#endif 		
 	LASCIIZ(*s);	/*	///// Remember to erase LASCIIZ
 				///// before all the calls to Lisnum */
 

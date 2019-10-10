@@ -226,7 +226,11 @@ typedef Lstr	*PLstr;
 
 /* --- file options --- */
 #define LSTARTPOS	-1
+#ifdef JCC
+#define LREADINCSIZE	4096
+#else
 #define LREADINCSIZE	32
+#endif
 #define LREADLINE	0
 #define LREADFILE	-1
 
@@ -234,6 +238,7 @@ typedef Lstr	*PLstr;
 #	define	LMAXNUMERICDIGITS	14
 #else
 #	define	LMAXNUMERICDIGITS	30
+#	define	LMAXNUMERICSTRING	75 
 #endif
 
 /* --- for interal use of lstring --- */
@@ -264,7 +269,9 @@ void  __CDECL Lfx   (const PLstr  s, const size_t len );
 void  __CDECL Licpy (const PLstr to, const long   from );
 void  __CDECL Lrcpy (const PLstr to, const double from );
 void  __CDECL Lscpy (const PLstr to, const char *from );
+#ifndef JCC
 void  __CDECL Lwscpy(const PLstr to, const wchar_t *from );
+#endif
 void  __CDECL Lcat  (const PLstr to, const char *from );
 int   __CDECL Lcmp  (const PLstr  a, const char *b );
 
@@ -423,11 +430,11 @@ DECLMATH( tanh );
 	char
 #	ifdef GREEK
 #	   ifdef MSDOS
-		*clower="abcdefghijklmnopqrstuvwxyz˜™š›œŸ ¡¢£¤¥¦§¨©«¬­®¯àªáâãåæçéäè",
-		*cUPPER="ABCDEFGHIJKLMNOPQRSTUVWXYZ€‚ƒ„…†‡ˆ‰Š‹Œ‘’“”•–—‘êëìíîïğˆ“",
+		*clower="abcdefghijklmnopqrstuvwxyzÂ˜Â™ÂšÂ›ÂœÂÂÂŸ Â¡Â¢Â£Â¤Â¥Â¦Â§Â¨Â©Â«Â¬Â­Â®Â¯Ã ÂªÃ¡Ã¢Ã£Ã¥Ã¦Ã§Ã©Ã¤Ã¨",
+		*cUPPER="ABCDEFGHIJKLMNOPQRSTUVWXYZÂ€ÂÂ‚ÂƒÂ„Â…Â†Â‡ÂˆÂ‰ÂŠÂ‹ÂŒÂÂÂÂÂ‘Â’Â“Â”Â•Â–Â—Â‘ÃªÃ«Ã¬Ã­Ã®Ã¯Ã°ÂˆÂ“",
 #	   else
-		*clower="abcdefghijklmnopqrstuvwxyzáâãäåæçèéêëìíîïğñóôõö÷øùÜİŞßúÀüıûàşò",
-		*cUPPER="ABCDEFGHIJKLMNOPQRSTUVWXYZÁÂÃÄÅÆÇÈÉÊËÌÍÎÏĞÑÓÔÕÖ×ØÙ¶¸¹ºÚÚ¼¾ÛÛ¿Ó",
+		*clower="abcdefghijklmnopqrstuvwxyzÃ¡Ã¢Ã£Ã¤Ã¥Ã¦Ã§Ã¨Ã©ÃªÃ«Ã¬Ã­Ã®Ã¯Ã°Ã±Ã³Ã´ÃµÃ¶Ã·Ã¸Ã¹ÃœÃÃÃŸÃºÃ€Ã¼Ã½Ã»Ã Ã¾Ã²",
+		*cUPPER="ABCDEFGHIJKLMNOPQRSTUVWXYZÃÃ‚ÃƒÃ„Ã…Ã†Ã‡ÃˆÃ‰ÃŠÃ‹ÃŒÃÃÃÃÃ‘Ã“Ã”Ã•Ã–Ã—Ã˜Ã™Â¶Â¸Â¹ÂºÃšÃšÂ¼Â¾Ã›Ã›Â¿Ã“",
 #	   endif
 #	else
 		*clower="abcdefghijklmnopqrstuvwxyz",
