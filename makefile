@@ -12,7 +12,7 @@
 # To add a new configuration for your system add it to the list below
 # then update the make.cnf file.
 
-RXVERSION = brexx-2.1.9
+RXVERSION = brexx-2.1.10
 RELEASE   = 0
 SPEC      = brexx.spec
 BUILDIR   = ${HOME}/rpmbuild/
@@ -36,6 +36,7 @@ TARGETS =	aix aix_debug \
 		hpux hpux_debug \
 		hpux-gcc hpux-gcc_debug \
 		irix irix_debug \
+		termux \
 		linux linux_debug \
 		linux32 linux32_debug \
 		linux64 linux64_debug \
@@ -45,6 +46,10 @@ TARGETS =	aix aix_debug \
 		test test_debug macos \
 		install
 
+.PHONY: help
+help: default
+
+.PHONY: default
 default:
 	@echo "BREXX V2 makefile"
 	@echo "Make file for $(RXVERSION)"
@@ -68,9 +73,10 @@ default:
 	@echo "  make linux64              for Linux 64bit systems with GCC *"
 	@echo "  make linux_intel          for Linux systems with intel compiler,"
 	@echo "  make linux_noalign        for Linux systems with GCC,"
-	@echo "  make macintosh            for a Mac (pre-Mac OPSX) application"
+	@echo "  make macintosh            for a Mac (pre-Mac OSX) application"
 	@echo "  make macos                for a macos application"
 	@echo "  make mswindows            for Microsoft Windows"
+	@echo "  make termux               for android termux"
 	@echo "  make test                 for testing/experimenting"
 	@echo "  make tar                  to prepare a .tar.gz file"
 	@echo "  make tags                 to generate the ctags file"
@@ -86,8 +92,8 @@ $(TARGETS):
 	cd doc;      $(MAKE) $@
 	cd inc;      $(MAKE) $@
 	cd lstring ; $(MAKE) $@
-	cd modules;  $(MAKE) $@
 	cd src;      $(MAKE) $@
+	cd modules;  $(MAKE) $@
 
 dos32:
 	cd lstring ; $(MAKE) $@
