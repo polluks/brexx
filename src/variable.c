@@ -369,12 +369,8 @@ RxVarFind(const Scope scope, const PBinLeaf litleaf, bool *found)
 		stemscope = ((Variable*)(leaf->value))->stem;
 
 		if (stemscope==NULL) {
-			if (!LISNULL(*LEAFVAL(leaf)))
-				Lstrcpy(&stemvaluenotfound, LEAFVAL(leaf));
-			else {
-				Lstrcpy(&stemvaluenotfound,varname);
-				Lstrcat(&stemvaluenotfound,&varidx);
-			}
+			Lstrcpy(&stemvaluenotfound,varname);
+			Lstrcat(&stemvaluenotfound,&varidx);
 			*found = FALSE;
 			return leaf;
 		}
@@ -428,12 +424,8 @@ RxVarFind(const Scope scope, const PBinLeaf litleaf, bool *found)
 
 		if (leafidx==NULL) {	/* not found */
 			*found = FALSE;
-			if (!LISNULL(*LEAFVAL(leaf)))
-				Lstrcpy(&stemvaluenotfound, LEAFVAL(leaf));
-			else {
-				Lstrcpy(&stemvaluenotfound,varname);
-				Lstrcat(&stemvaluenotfound,&varidx);
-			}
+			Lstrcpy(&stemvaluenotfound,varname);
+			Lstrcat(&stemvaluenotfound,&varidx);
 			return leaf;	/* return stem leaf */
 		} else {
 			*found = TRUE;
@@ -514,12 +506,8 @@ RxVarFindName(Scope scope, PLstr name, bool *found)
 		stemscope = ((Variable*)(leaf->value))->stem;
 
 		if (stemscope==NULL) {
-			if (!LISNULL(*LEAFVAL(leaf)))
-				Lstrcpy(&stemvaluenotfound,LEAFVAL(leaf));
-			else {
-				Lstrcpy(&stemvaluenotfound,varname);
-				Lstrcat(&stemvaluenotfound,&varidx);
-			}
+			Lstrcpy(&stemvaluenotfound,varname);
+			Lstrcat(&stemvaluenotfound,&varidx);
 			*found = FALSE;
 			return leaf;
 		}
@@ -544,12 +532,8 @@ RxVarFindName(Scope scope, PLstr name, bool *found)
 
 		if (leafidx==NULL) {	/* not found */
 			*found = FALSE;
-			if (!LISNULL(*LEAFVAL(leaf)))
-				Lstrcpy(&stemvaluenotfound,LEAFVAL(leaf));
-			else {
-				Lstrcpy(&stemvaluenotfound,varname);
-				Lstrcat(&stemvaluenotfound,&varidx);
-			}
+			Lstrcpy(&stemvaluenotfound,varname);
+			Lstrcat(&stemvaluenotfound,&varidx);
 			return leaf;	/* return stem leaf */
 		} else {
 			*found = TRUE;
