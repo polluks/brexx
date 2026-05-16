@@ -1117,10 +1117,9 @@ outofcmd:
 			} else {
 				leaf = RxVarFind(VarScope, litleaf, &found);
 				if (found) {
-						Lstrcpy(&(_tmpstr[RxStckTop]),LEAFVAL(leaf));
-						STACKTOP = &(_tmpstr[RxStckTop]);
-					}
-				else {
+					Lstrcpy(&(_tmpstr[RxStckTop]),LEAFVAL(leaf));
+					STACKTOP = &(_tmpstr[RxStckTop]);
+				} else {
 					if (inf->stem) {
 						/* Lstrcpy to a temp variable */
 						Lstrcpy(&(_tmpstr[RxStckTop]),&stemvaluenotfound);
