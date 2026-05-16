@@ -18,6 +18,7 @@
  *
  */
 
+#include "lerror.h"
 #include "lstring.h"
 
 /* -----------------  expose ---------------- */
@@ -55,9 +56,10 @@ Lexpose( const PLstr to, const PLstr A, const PLstr B )
 	}
 	if (minusA) r = -r;
 
-	if (minusB)
+	if (minusB) {
+		if (r == 0) Lerror(ERR_ARITH_OVERFLOW,3);
 		LREAL(*to) = 1/r;
-	else
+	} else
 		LREAL(*to) = r;
 
 	LTYPE(*to) = LREAL_TY;
