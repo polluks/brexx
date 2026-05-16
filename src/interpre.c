@@ -1112,11 +1112,14 @@ outofcmd:
 			/* check to see if we have allready its position */
 			if (inf->id == Rx_id) {
 				leaf = inf->leaf[0];
-				STACKTOP = LEAFVAL(leaf);
+				Lstrcpy(&(_tmpstr[RxStckTop]),LEAFVAL(leaf));
+				STACKTOP = &(_tmpstr[RxStckTop]);
 			} else {
 				leaf = RxVarFind(VarScope, litleaf, &found);
-				if (found)
-					STACKTOP = LEAFVAL(leaf);
+				if (found) {
+						Lstrcpy(&(_tmpstr[RxStckTop]),LEAFVAL(leaf));
+						STACKTOP = &(_tmpstr[RxStckTop]);
+					}
 				else {
 					if (inf->stem) {
 						/* Lstrcpy to a temp variable */
