@@ -250,7 +250,7 @@ void __CDECL
 R_oSoS( )
 {
 	int		option = FALSE;
-	int		found;
+	bool		found;
 	PBinLeaf	leaf;
 	Variable	*var;
 	Lstr		str;
@@ -321,7 +321,8 @@ R_SoSoS( int func )
 	if (!IN_RANGE(1,ARGN,3)) Lerror(ERR_INCORRECT_CALL,0);
 	get_s(1);
 	if (func == f_addr) {		/* ADDR(...) */
-		int		found,poolnum;
+		bool	found;
+		int	poolnum;
 		char	opt='D';
 		PBinLeaf leaf;
 		Lstr	str;

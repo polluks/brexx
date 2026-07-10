@@ -22,7 +22,7 @@
 typedef unsigned char	byte;
 typedef unsigned short	word;
 typedef unsigned long	dword;
-typedef int		bool;
+//typedef int		bool;
 
 /* ---------------- comonly used definitions ----------------- */
 #ifndef FALSE

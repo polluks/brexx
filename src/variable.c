@@ -654,7 +654,7 @@ RxVarDelInd(Scope scope, PLstr vars)
 {
 	Lstr	name;
 	long	w,i;
-	int	found;
+	bool	found;
 	PBinLeaf	leaf;
 
 	LINITSTR(name);
@@ -680,7 +680,7 @@ RxVarExpose(Scope scope, PBinLeaf litleaf)
 	PBinLeaf leaf, stemleaf;
 	Lstr	aux;
 	int	oldcurid;
-	int	found;
+	bool	found;
 
 	inf = (IdentInfo*)(litleaf->value);
 
@@ -782,7 +782,7 @@ RxVarSet( Scope scope, PBinLeaf varleaf, PLstr value )
 {
 	IdentInfo	*inf;
 	PBinLeaf	leaf;
-	int	found;
+	bool	found;
 
 	inf = (IdentInfo*)(varleaf->value);
 	if (inf->id == Rx_id) {
@@ -1018,7 +1018,7 @@ RxPoolGet( PLstr pool, PLstr name, PLstr value )
 {
 	PBinLeaf leaf;
 	int	poolnum;
-	int	found;
+	bool	found;
 
 	/* check to see if it is internal pool */
 	if ( LTYPE(*pool)==LINTEGER_TY ||
@@ -1071,7 +1071,7 @@ RxPoolSet( PLstr pool, PLstr name, PLstr value )
 {
 	PBinLeaf leaf;
 	int	poolnum;
-	int	found;
+	bool	found;
 
 	/* check to see if it is internal pool */
 	if (LLEN(*name)==0)

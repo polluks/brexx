@@ -169,8 +169,11 @@ cygwin:
 	"STATIC = no" \
 	"EXTRA = " \
 	"CFLAGS = -O2 -fpic -DALIGN -DINLINE -DHAVE_SETENV -DHAVE_READLINE" \
-	"LDEXTRA = -lreadline -lnsl -ldl -lm" \
-	"LIBEXTRA = -lreadline -lnsl -ldl -lm -Wl,-rpath"
+	"LDEXTRA = -lreadline -ldl -lm" \
+	"LIBEXTRA = -lreadline -ldl -lm -Wl,-rpath"
+
+#	"LDEXTRA = -lreadline -lnsl -ldl -lm" 
+#	"LIBEXTRA = -lreadline -lnsl -ldl -lm -Wl,-rpath"
 
 # cygwin
 cygwin2:

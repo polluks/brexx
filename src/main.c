@@ -119,6 +119,7 @@ main(int ac, char *av[])
 	}
 #ifdef __DEBUG__
 	__debug__ = FALSE;
+	__debug__ = TRUE;
 #endif
 
 	/* --- Initialise --- */

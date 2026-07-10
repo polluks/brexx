@@ -660,7 +660,7 @@ I_CallFunction( void )
 					PLEAF(litleaf);
 					/* test if indirect exposure (var) */
 					if (litleaf==NULL) {
-						int	found;
+						bool	found;
 						PBinLeaf leaf;
 
 						PLEAF(litleaf);
@@ -890,7 +890,8 @@ RxInterpret( void )
 	PLstr	a;
 	IdentInfo	*inf;
 	CTYPE	w;
-	int	na, nf, jc, errno, subno, found;
+	int	na, nf, jc, errno, subno;
+	bool	found;
 	PBinLeaf	litleaf,leaf;
 	RxFunc	*func;
 #ifdef __DEBUG__

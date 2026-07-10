@@ -181,7 +181,7 @@ void __CDECL
 R_S( const int func )
 {
 	Lstr	str;
-	int	found;
+	bool	found;
 
 	if (ARGN!=1) Lerror(ERR_INCORRECT_CALL,0);
 	L2STR(ARG1);

@@ -170,6 +170,7 @@
 #			define	TEXT(x)		(x)
 #		endif
 #	endif
+typedef int bool;
 #endif
 
 /* -------------- Terminal I/O ----------------- */
