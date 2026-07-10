@@ -159,7 +159,7 @@ Exp2( void )
 	_symbol = symbol;
 
 	/* DO NOT CHANGE THE ORDER OF THIS SYMBOLS */
-	if  ((symbol >= eq_sy)  && (symbol <= dgt_sy)) {
+	while  ((symbol >= eq_sy)  && (symbol <= dgt_sy)) {
 		if (CompileCodeLen==pos) Lerror(ERR_INVALID_EXPRESSION,0);
 		nextsymbol();
 		pos2 = CompileCodeLen;
@@ -206,6 +206,7 @@ Exp2( void )
 //		}
 *****/
 		TraceByte( operator_middle );
+		_symbol = symbol;
 	}
 } /* Exp2 */
 
